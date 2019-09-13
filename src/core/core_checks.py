@@ -6,7 +6,7 @@ from virus_total_apis import PublicApi as VirusTotalPublicApi
 
 class Checks(ABC): 
     """ abstract class for burnt checks with in PeFixup."""
-    def __init__(self, sha256, api_key: str = ''):
+    def __init__(self, sha256: str, api_key: str = ''):
         """
         Init class and passed objects.
         """
