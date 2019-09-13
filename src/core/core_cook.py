@@ -11,6 +11,7 @@ from pefile import debug_types
 if typing.TYPE_CHECKING:
     from typing import Tuple, Iterable, Union
 
+# TODO: rename CoreCook to Cook
 class CoreCook():
 
     """

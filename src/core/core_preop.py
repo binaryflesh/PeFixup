@@ -6,13 +6,14 @@ from termcolor import colored
 
 from . import core_hash
 
+# TODO: Rename to PerOp
 class CorePerOp():
 
     """
     Core PreOp Checks Class.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Init class and passed objects.
         """
@@ -24,7 +25,7 @@ class CorePerOp():
         self.pre_op_debug_info()
         self.pre_op_dll_info()
 
-    def pre_op_metadata(self):
+    def pre_op_metadata(self) -> None:
         """ """
         s = core_hash.IMP()
         nc = self.model['non_cooked_payload']
@@ -36,14 +37,14 @@ class CorePerOp():
         nc['metadata']['executable_image_size'] = int(self.pe.OPTIONAL_HEADER.SizeOfImage) / 1024
         self.print_pre_op_metadata()
 
-    def pre_op_file_header(self):
+    def pre_op_file_header(self) -> None:
         """ """
         nc = self.model['non_cooked_payload']
         nc['file_header']['machine_type'] = hex(self.pe.FILE_HEADER.Machine)
         nc['file_header']['timedatestamp'] = datetime.datetime.fromtimestamp(int(self.pe.FILE_HEADER.TimeDateStamp)).strftime('%c')
         self.print_pre_op_file_header()
 
-    def pre_op_image_opt_header(self):
+    def pre_op_image_opt_header(self) -> None:
         """ """
         nc = self.model['non_cooked_payload']
         nc['image_optional_header64']['magic'] = hex(self.pe.OPTIONAL_HEADER.Magic)
@@ -53,7 +54,7 @@ class CorePerOp():
         nc['image_optional_header64']['minor_os_version'] = hex(self.pe.OPTIONAL_HEADER.MinorOperatingSystemVersion)
         self.print_pre_op_image_opt_header()
 
-    def pre_op_debug_info(self):
+    def pre_op_debug_info(self) -> None:
         """ """
         _t = {}
         try:
@@ -71,7 +72,7 @@ class CorePerOp():
         except AttributeError as e:
             print(colored(f'[!] {e}','yellow'))
 
-    def pre_op_dll_info(self):
+    def pre_op_dll_info(self) -> None:
         """ """
         print("[*] Listing imported DLLs...")
         try:

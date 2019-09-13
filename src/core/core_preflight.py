@@ -2,20 +2,21 @@ from typing import Tuple, Iterable, Union
 from termcolor import colored, cprint
 from . import core_hash
 
+# TODO: rename to PreFlight
 class CorePreFlight():
 
     """
     Core PreFlight Checks Class.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Init class and passed objects.
         """
         self.print_pre_flight()
         self.pre_flight()
 
-    def pre_flight(self):
+    def pre_flight(self) -> None:
         preflight = False
         preflight = self.re_write_check()
         if preflight:
