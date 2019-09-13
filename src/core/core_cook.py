@@ -17,7 +17,7 @@ class CoreCook():
     Core Cook Class.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Init class and passed objects.
         """
@@ -26,7 +26,7 @@ class CoreCook():
         self.populate_metadata()
         self.runtime_burnt_check()
 
-    def cook_taint(self):
+    def cook_taint(self) -> None:
         self.print_taint_payload()
         self.setup_taint()
         if self.taint:
@@ -36,7 +36,7 @@ class CoreCook():
             self.directory_entry_debug()
         self.taint.close()
 
-    def dos_header(self):
+    def dos_header(self) -> None:
         """
         typedef struct _IMAGE_DOS_HEADER {  // DOS .EXE header
             USHORT e_magic;         // Magic number
@@ -251,7 +251,7 @@ class CoreCook():
         return status
 
 
-    def sanity_check(self):
+    def sanity_check(self) -> None:
         """ Perform some basic checks to make sure we have completed all stomps."""
         # setup new file handle
         self.setup_cooked()
@@ -280,7 +280,7 @@ class CoreCook():
             if unpack('L', self.cooked[x.struct.get_field_absolute_offset('TimeDateStamp'):x.struct.get_field_absolute_offset('TimeDateStamp')+0x8])[0] == self.args.compile_time:
                 print(f"[*] TimeDateStamp stomped properly for {debug_types[x.struct.Type]}: {colored('PASS', 'green')}")
 
-    def populate_metadata(self):
+    def populate_metadata(self) -> None:
         """ Populate cooked metadata into our JSON model"""
         _md = self.model['cooked_payload']['metadata']
         _md['file_name'] = self.args.LIVE
