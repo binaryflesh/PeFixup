@@ -1,4 +1,4 @@
-from typing import Tuple, Iterable, Union
+import typing
 from termcolor import colored, cprint
 from . import core_hash
 from . import core_checks
@@ -7,6 +7,9 @@ import magic
 import pyexifinfo as exif
 from struct import *
 from pefile import debug_types
+
+if typing.TYPE_CHECKING:
+    from typing import Tuple, Iterable, Union
 
 class CoreCook():
 
